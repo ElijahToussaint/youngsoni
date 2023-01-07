@@ -1,0 +1,83 @@
+<nav class="navbar navbar-expand-lg sticky-top bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="{{path}}index.html">
+            <img src="{{ path }}{{ config.site.logo }}" alt="logo" width="30" title="{{ config.site.title }}">
+            <span class="align-middle">{{ config.site.title }}</span>
+        </a>
+        {% if posts | length > 0 or config.rss.enabled %}
+        <button class="navbar-toggler d-block d-sm-none" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        {% endif %}
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav d-block d-sm-none">
+                {% if posts | length > 0 %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#searchModal">Search</a>
+                </li>
+                {% endif %}
+                {% if config.rss.enabled %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path }}feed.rss" target="_blank">RSS</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="ms-auto mb-2 mb-lg-0 d-none d-sm-block">
+            {% if posts | length > 0 %}
+            <a href="#" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#searchModal">
+                <i class="fa fa-search fa-lg" aria-hidden="true" title="search"></i>
+            </a>
+            {% endif %}
+            {% if config.rss.enabled %}
+            <a href="{{ path }}feed.rss" target="_blank" class="btn btn-link">
+                <i class="fa fa-rss fa-lg" aria-hidden="true" title="rss"></i>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+<!-- search modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Search</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input class="form-control" type="search" placeholder="Search..." aria-label="default input example"
+                    id="myInput" onkeyup="searchSite()">
+                <div class="alert alert-secondary mt-3 mb-0" id="messageSearch" role="alert">
+                    Enter a keyword above to search this site's pages.
+                </div>
+                <ul class="list-unstyled mb-0 mt-2 d-none" id="myUL">
+                    {% for post in posts %}
+                    <li>
+                        <div class="d-flex flex-column">
+                            <div class="p-1">
+                                <strong class="fs-5"><a href="{{ path }}post/{{ id[loop.index0] }}.html"
+                                        class="text-decoration-none">
+                                        {{ post.attributes.title }}
+                                    </a></strong>
+                            </div>
+                            <div class="p-1">
+                                {{ post.body | striptags(true) | truncate(200) }}
+                            </div>
+                            <div class="p-1">
+                                {% for tag in post.attributes.tags %}
+                                <span class="badge text-bg-primary">{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

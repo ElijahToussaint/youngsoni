@@ -1,0 +1,39 @@
+{% extends "layouts/layout.html" %}
+
+{% block title %}
+<title>{{ config.site.title }} | Links</title>
+{% endblock %}
+
+{% block description %}
+<meta name="description" content="{{ config.site.description | striptags(true) | truncate(200) }}">
+{% endblock %}
+
+{% block keywords %}
+<meta name="keywords" content="{{ config.site.keywords | string }}">
+{% endblock %}
+
+{% block content %}
+<div class="card mb-3">
+    <div class="card-header">
+        <div class="d-flex">
+            <div class="w-100">
+                <strong class="fs-5">Links</strong>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            {% for link in links %}
+            <div class="col-md-6 text-truncate">
+                <a href="{{ link.url }}" class="text-decoration-none" target="_blank">
+                    <div class="d-flex">
+                        <div class="p-2"><i class="fa fa-{{ link.icon }}" aria-hidden="true"></i></div>
+                        <div class="p-2 flex-grow-1">{{ link.name }}</div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

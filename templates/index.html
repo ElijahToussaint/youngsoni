@@ -1,0 +1,150 @@
+{% extends "layouts/layout.html" %}
+
+{% block title %}
+<title>{{ config.site.title }} | Home</title>
+{% endblock %}
+
+{% block description %}
+<meta name="description" content="{{ config.site.description | striptags(true) | truncate(200) }}">
+{% endblock %}
+
+{% block keywords %}
+<meta name="keywords" content="{{ config.site.keywords | string }}">
+{% endblock %}
+
+{% block content %}
+
+{% if posts | length > 0 %}
+{% for post in postList %}
+<div class="card mb-3">
+    <div class="card-header">
+        <div class="d-flex">
+            <div class="w-100 text-truncate">
+                <strong class="fs-5"><a href="{{ path }}post/{{ id[loop.index0] }}.html" class="text-decoration-none">{{
+                        post.attributes.title }}</a></strong>
+            </div>
+        </div>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <div class="d-flex flex-row flex-wrap">
+                <div class="p-2">
+                    <i class="fa fa-calendar-o" aria-hidden="true" title="date"></i><span style="margin-left: 0.5em;">{{
+                        post.attributes.timestamp }}</span>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            {% if post.body | length > 500 %}
+            {{ post.body | striptags(true) | truncate(500) }} <a href="{{ path }}post/{{ id[loop.index0] }}.html"
+                class="text-decoration-none">Read More</a>
+            {% else %}
+            {{ post.body | striptags(true) }}
+            {% endif %}
+        </li>
+    </ul>
+    {% if post.attributes.tags | length > 0 %}
+    <div class="card-footer">
+        {% for tag in post.attributes.tags %}
+        <span class="badge text-bg-primary">{{ tag }}</span>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endfor %}
+<!-- pagination variables -->
+{% set current_page = currentPage %}
+{% set records_per_page = 3 %}
+{% set numPages = totalPages %}
+{% set prev = 1 %}
+{% set next = current_page + records_per_page %}
+<!-- sets the prev records per page -->
+{% if records_per_page - current_page > 0 %}
+{% set prev = 1 %}
+{% else %}
+{% set prev = current_page - (records_per_page - 1) %}
+{% endif %}
+<!-- sets the next records per page -->
+{% if current_page + records_per_page > numPages %}
+{% set next = numPages + 1 %}
+{% else %}
+{% set next = current_page + records_per_page %}
+{% endif %}
+<!-- pagination -->
+{% if numPages > 1 %}
+<nav aria-label="pagination" class="d-sm-none d-md-block">
+    <ul class="pagination">
+        <!-- first and previous buttons -->
+        {% if current_page == 1 %}
+        {% if numPages > records_per_page %}
+        <li class="page-item disabled d-none d-sm-block">
+            <a class="page-link">First</a>
+        </li>
+        {% endif %}
+        <li class="page-item disabled">
+            <a class="page-link">Previous</a>
+        </li>
+        {% else %}
+        {% if numPages > records_per_page %}
+        <li class="page-item d-none d-sm-block">
+            <a href="{{ path }}index.html" class="page-link">First</a>
+        </li>
+        {% endif %}
+        {% if current_page - 1 == 1 %}
+        <li class="page-item">
+            <a href="{{ path }}index.html" class="page-link">Previous</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+            <a href="{{ path }}page/{{ current_page - 1 }}.html" class="page-link">Previous</a>
+        </li>
+        {% endif %}
+        {% endif %}
+        <!-- pages -->
+        {% for page in range(prev, next) %}
+        {% if page == current_page %}
+        <li class="page-item active" aria-current="page">
+            <a class="page-link">{{ page }}</a>
+        </li>
+        {% else %}
+        {% if page == 1 %}
+        <li class="page-item d-none d-sm-block" aria-current="page">
+            <a class="page-link" href="{{ path }}index.html">{{ page }}</a>
+        </li>
+        {% else %}
+        <li class="page-item d-none d-sm-block" aria-current="page">
+            <a class="page-link" href="{{ path }}page/{{ page }}.html">{{ page }}</a>
+        </li>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+        <!-- next and last buttons -->
+        {% if current_page == numPages %}
+        <li class="page-item disabled">
+            <a class="page-link">Next</a>
+        </li>
+        {% if numPages > records_per_page %}
+        <li class="page-item disabled d-none d-sm-block">
+            <a class="page-link">Last</a>
+        </li>
+        {% endif %}
+        {% else %}
+        <li class="page-item">
+            <a href="{{path}}page/{{ current_page + 1 }}.html" class="page-link">Next</a>
+        </li>
+        {% if numPages > records_per_page %}
+        <li class="page-item d-none d-sm-block">
+            <a href="{{path}}page/{{ numPages }}.html" class="page-link">Last</a>
+        </li>
+        {% endif %}
+        {% endif %}
+</nav>
+{% endif %}
+{% else %}
+<div class="alert alert-secondary" role="alert">
+    <i class="fa fa-exclamation-triangle me-2" aria-hidden="true"></i>There are currently no post on this blog.
+    Please come back later.
+</div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{
+  # site configurations
+  site: {
+    title: Youngsoni
+    author: John Doe
+    avatar: public/assets/default.jpg
+    logo: public/assets/logo.svg
+    favicon: public/assets/favicon.ico
+    about: A statically generated blog.
+    description: A statically generated blog.
+    keywords: [ 
+      youngsoni
+      static
+      site
+      website
+      generator
+      software
+    ]
+  }
+  # node js configurations
+  node: {
+    port: 5000
+  }
+  # blog configurations
+  blog: {
+    postPerPage: 10
+  }
+  # rss configurations
+  rss: {
+    enabled: false
+    domain: https://www.example.com
+  }
+}

@@ -1,0 +1,57 @@
+[
+  {
+    name: github
+    icon: github
+    url: https://www.github.com
+  }
+  {
+    name: gitlab
+    icon: gitlab
+    url: https://www.gitlab.com
+  }
+  {
+    name: gitea
+    icon: gitea
+    url: https://www.gitea.io
+  }
+  {
+    name: diaspora
+    icon: diaspora
+    url: https://diasporafoundation.org/
+  }
+  {
+    name: mastodon
+    icon: mastodon
+    url: https://joinmastodon.org/
+  }
+  {
+    name: pleroma
+    icon: pleroma
+    url: https://pleroma.social/
+  }
+  {
+    name: gnu social
+    icon: gnu-social
+    url: https://www.gnu.org/software/social/
+  }
+  {
+    name: friendica
+    icon: friendica
+    url: https://friendi.ca/
+  }
+  {
+    name: peertube
+    icon: peertube
+    url: https://joinpeertube.org/
+  }
+  {
+    name: funkwhale
+    icon: funkwhale
+    url: https://funkwhale.audio/
+  }
+  {
+    name: matrix
+    icon: matrix-org
+    url: https://matrix.org/
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "name": "youngsoni",
+  "version": "1.0.0",
+  "description": "static blog generator",
+  "main": "app.js",
+  "start": "node app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "elijah toussaint",
+  "license": "AGPL-3.0-or-later",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "bootstrap": "^5.2.2",
+    "canvas": "^2.10.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto-icons": "^1.0.65",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "express-validator": "^6.14.2",
+    "fork-awesome": "^1.2.0",
+    "front-matter": "^4.0.2",
+    "hashids": "^2.2.10",
+    "hjson": "^3.2.2",
+    "html-prettify": "^1.0.7",
+    "jquery": "^3.6.1",
+    "markdown-it": "^13.0.1",
+    "moment": "^2.29.4",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.20",
+    "nunjucks": "^3.2.3",
+    "qrcode": "^1.5.1"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {},
+  "repository": "git+https://github.com/ElijahToussaint/youngsoni.git",
+  "bugs": {
+    "url": "https://github.com/ElijahToussaint/youngsoni/issues"
+  },
+  "homepage": "https://github.com/ElijahToussaint/youngsoni#readme"
+}

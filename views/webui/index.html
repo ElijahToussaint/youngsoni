@@ -1,0 +1,65 @@
+{% extends "webui/layouts/layout.html" %}
+
+{% block title %}
+<title>Youngsoni | WebUI</title>
+{% endblock %}
+
+{% block content %}
+
+<!-- error alert -->
+{% if errors | length > 0 %}
+{% for error in errors %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ error.msg }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+<!-- successful alert -->
+{% if success %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ successMsg }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+<div class="card mb-3">
+    <div class="card-header">
+        Tables
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <div class="d-flex">
+                <div class="flex-grow-1">
+                    <a class="text-decoration-none" href="/webui/posts">Posts</a>
+                </div>
+                <div>
+                    <small class="text-muted">{{ posts | length }} Entries</small>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="d-flex">
+                <div class="flex-grow-1">
+                    <a class="text-decoration-none" href="/webui/links">Links</a>
+                </div>
+                <div>
+                    <small class="text-muted">{{ links | length }} Entries</small>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="d-flex">
+                <div class="flex-grow-1">
+                    <a class="text-decoration-none" href="webui/crypto">Crypto</a>
+                </div>
+                <div>
+                    <small class="text-muted">{{ crypto | length }} Entries</small>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+{% endblock %}

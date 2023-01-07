@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Standard Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Site Properties -->
+    {% block title %}{% endblock %}
+    <!-- webui css -->
+    <link rel="stylesheet" type="text/css" href="/webui/public/css/webui.css">
+    <!-- compressed css -->
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <!-- fork awesome css -->
+    <link rel="stylesheet" href="/fork-awesome/css/fork-awesome.min.css">
+    <!-- crypto icons css -->
+    <link rel="stylesheet" type="text/css" href="/crypto-icons/font.css">
+    <link rel="stylesheet" type="text/css" href="/crypto-icons/styles.css">
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="/webui/public/assets/favicon.ico">
+</head>
+
+<body>
+    <div class="content">
+        <!-- content -->
+        {% include "webui/layouts/navbar.html" %}
+        <div class="container-md">
+            <div class="row mt-3">
+                <div class="col">
+                    <!-- body -->
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+        <!-- toast message -->
+        <div aria-live="polite" aria-atomic="true" class="position-relative">
+            <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toast-container">
+                <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <i class="fa fa-bell me-2" aria-hidden="true"></i>
+                        <strong class="me-auto" id="toast-heading">Toast</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body" id="toast-body">
+                        Hello, world! This is a toast message.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include "webui/layouts/footer.html" %}
+    <!-- webui javascript -->
+    <script src="/webui/public/js/webui.js"></script>
+    <!-- compressed javaScript -->
+    <script src="/jquery/dist/jquery.slim.js"></script>
+    <!-- bootstrap javascript -->
+    <script src="/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</body>
+
+</html>

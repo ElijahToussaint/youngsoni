@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Standard Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all">
+    <meta name="author" content="{{ config.site.author }}">
+    <!-- Site Properties -->
+    {% block title %}{% endblock %}
+    {% block description %}{% endblock %}
+    {% block keywords %}{% endblock %}
+    <!-- site css -->
+    <link rel="stylesheet" type="text/css" href="{{ path }}public/css/site.css">
+    <!-- custom css -->
+    <link rel="stylesheet" type="text/css" href="{{ path }}public/css/custom.css">
+    <!-- compressed css -->
+    <link rel="stylesheet" href="{{ path }}bootstrap/dist/css/bootstrap.min.css">
+    <!-- fork awesome css -->
+    <link rel="stylesheet" href="{{ path }}fork-awesome/css/fork-awesome.min.css">
+    <!-- crypto icons css -->
+    <link rel="stylesheet" type="text/css" href="{{ path }}crypto-icons/font.css">
+    <link rel="stylesheet" type="text/css" href="{{ path }}crypto-icons/styles.css">
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ path }}{{ config.site.favicon }}">
+</head>
+
+<body>
+    <div class="content">
+        <!-- content -->
+        {% include "layouts/navbar.html" %}
+        <div class="container-md">
+            <div class="row mt-3">
+                <div class="col-sm-12 col-md-12 col-lg-4">
+                    <!-- sidebar -->
+                    {% include "layouts/sidebar.html" %}
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-8">
+                    <!-- body -->
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+        <!-- toast message -->
+        <div aria-live="polite" aria-atomic="true" class="position-relative">
+            <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toast-container">
+                <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <i class="fa fa-bell me-2" aria-hidden="true"></i>
+                        <strong class="me-auto" id="toast-heading">Toast</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body" id="toast-body">
+                        Hello, world! This is a toast message.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include "layouts/footer.html" %}
+    <!-- site javascript -->
+    <script src="{{path}}public/js/site.js"></script>
+    <!-- compressed javaScript -->
+    <script src="{{ path }}jquery/dist/jquery.slim.js"></script>
+    <!-- bootstrap javascript -->
+    <script src="{{ path }}bootstrap/dist/js/bootstrap.bundle.js"></script>
+</body>
+
+</html>

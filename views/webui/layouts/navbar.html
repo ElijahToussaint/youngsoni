@@ -1,0 +1,154 @@
+<nav class="navbar navbar-expand-lg sticky-top bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/webui">
+            <img src="/webui/public/assets/logo.svg" alt="logo" width="30" title="{{ config.site.title }}">
+            <span class="align-middle">Youngsoni <small class="text-muted">webui</small></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#configModal">Configuration</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- configuration modal -->
+<div class="modal fade" id="configModal" tabindex="-1" aria-labelledby="configModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <form action="/webui/config" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="configModalLabel">Configuration</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="pills-site-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-site" type="button" role="tab" aria-controls="pills-site"
+                                aria-selected="true">Site</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-author-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-author" type="button" role="tab" aria-controls="pills-author"
+                                aria-selected="false">Author</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <!-- site configurations tab -->
+                        <div class="tab-pane fade show active" id="pills-site" role="tabpanel"
+                            aria-labelledby="pills-site-tab" tabindex="0">
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="title" name="title"
+                                    value="{{ config.site.title }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="logo" class="form-label">Upload logo</label>
+                                <input class="form-control" type="file" id="logo" name="logo"
+                                    accept=".svg,.png">
+                            </div>
+                            <div class="mb-3">
+                                <label for="favicon" class="form-label">Upload favicon</label>
+                                <input class="form-control" type="file" id="favicon" name="favicon"
+                                    accept=".png,.ico">
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" name="description"
+                                    rows="3">{{ config.site.description }}</textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="keywords" class="form-label">Keywords</label>
+                                <input type="text" class="form-control" id="keywords" name="keywords"
+                                    value="{{ config.site.keywords }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="postPerPage" class="form-label">Blog post per page</label>
+                                <input type="number" class="form-control" id="postPerPage" name="postPerPage"
+                                    value="{{ config.blog.postPerPage }}">
+                            </div>
+                        </div>
+                        <!-- author configurations tab -->
+                        <div class="tab-pane fade" id="pills-author" role="tabpanel"
+                            aria-labelledby="pills-author-tab" tabindex="0">
+                            <div class="mb-3">
+                                <label for="author" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="author" name="author"
+                                    value="{{ config.site.author }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="avatar" class="form-label">Upload avatar</label>
+                                <input class="form-control" type="file" id="avatar" name="avatar"
+                                    accept=".png,.gif,.jpg,.jpeg">
+                            </div>
+                            <div class="mb-3">
+                                <label for="about" class="form-label">About</label>
+                                <textarea class="form-control" id="about" name="about"
+                                    rows="3">{{ config.site.about }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!--
+                    <h5>Site</h5>
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" value="{{ config.site.title }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="logo" class="form-label">Upload logo</label>
+                        <input class="form-control" type="file" id="logo" name="logo" value="{{ config.site.logo }}"
+                            accept=".svg,.png">
+                    </div>
+                    <div class="mb-3">
+                        <label for="favicon" class="form-label">Upload favicon</label>
+                        <input class="form-control" type="file" id="favicon" name="favicon"
+                            value="{{ config.site.favicon }}" accept=".png,.ico">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" name="description"
+                            rows="3">{{ config.site.description }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="keywords" class="form-label">Keywords</label>
+                        <input type="text" class="form-control" id="keywords" name="keywords"
+                            value="{{ config.site.keywords }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="postPerPage" class="form-label">Blog post per page</label>
+                        <input type="number" class="form-control" id="postPerPage" name="postPerPage"
+                            value="{{ config.blog.postPerPage }}">
+                    </div>
+                    <hr>
+                    <h5>Author</h5>
+                    <div class="mb-3">
+                        <label for="author" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="author" name="author"
+                            value="{{ config.site.author }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="avatar" class="form-label">Upload avatar</label>
+                        <input class="form-control" type="file" id="avatar" name="avatar"
+                            value="{{ config.site.avatar }}" accept=".png,.gif,.jpg,.jpeg">
+                    </div>
+                    <div class="mb-3">
+                        <label for="about" class="form-label">About</label>
+                        <textarea class="form-control" id="about" name="about"
+                            rows="3">{{ config.site.about }}</textarea>
+                    </div>
+                    -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

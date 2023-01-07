@@ -1,0 +1,14 @@
+{% extends "layouts/layout.html" %}
+
+{% block title %}
+<title>{{ config.site.title }} | Error {{ error.status }}</title>
+{% endblock %}
+
+{% block content %}
+<div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Error {{ error.status }}</h4>
+    <hr>
+    <h5>{{ error.response }}</h5>
+    <p class="mb-0">{{ error.message }}</p>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+[
+  {
+    status: 400
+    response: Bad Request
+    message: A request was sent that the server could not understand.
+  }
+  {
+    status: 401
+    response: Unauthorized
+    message: The request requires user authentication.
+  }
+  {
+    status: 403
+    response: Forbidden
+    message: The server understood the request, but is refusing to fulfill it.
+  }
+  {
+    status: 404
+    response: Not Found
+    message: The server has not found anything matching the request.
+  }
+  {
+    status: 500
+    response: Internal Server Error
+    message: The server encountered an unexpected condition which prevented it from fulfilling the request.
+  }
+]

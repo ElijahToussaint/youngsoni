@@ -1,0 +1,44 @@
+[
+  {
+    name: Bitcoin
+    icon: btc
+    address: mnRMtpERhbKJoUzi6VXDb1V8fEiR96QgHN
+    explorer: https://blockchair.com/bitcoin/address/
+  }
+  {
+    name: Ethereum
+    icon: eth
+    address: 0x28EE37F741E17B7B435393B40C3CEAC2CCBA4A18
+    explorer: https://etherscan.io/address/
+  }
+  {
+    name: Bitcoin Cash
+    icon: bch
+    address: mkhdGTTvH3mjCPfzTrkYwzJSjsVSmV37JK
+    explorer: https://bchblockexplorer.com/address/
+  }
+  {
+    name: Litecoin
+    icon: ltc
+    address: mhEYDi6USzr8weyCmAP6f1eUdQ5XRAbKa7
+    explorer: https://litecoinblockexplorer.net/address/
+  }
+  {
+    name: Dogecoin
+    icon: doge
+    address: motHmP7hDm9d6o7FzoGMVzGY8WWDcgjbQ6
+    explorer: https://dogechain.info/address/
+  }
+  {
+    name: Dash
+    icon: dash
+    address: moVMTKAoi4Ne6bpL9atrAmQPQ2bDR5BksM
+    explorer: https://explorer.dash.org/insight/address/
+  }
+  {
+    name: Sushiswap
+    icon: ""
+    address: 0xAB36E3DB865699981C8C3450F4AFD906BE8D94F6
+    explorer: ""
+  }
+]

@@ -1,0 +1,82 @@
+{% extends "layouts/layout.html" %}
+
+{% block title %}
+<title>{{ config.site.title }} | {{ post.attributes.title }}</title>
+{% endblock %}
+
+{% block description %}
+<meta name="description" content="{{ post.body | striptags(true) | truncate(200) }}">
+{% endblock %}
+
+{% block keywords %}
+<meta name="keywords" content="{{ post.attributes.tags }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="card mb-3">
+    <div class="card-header">
+        <div class="d-flex">
+            <div class="w-100 text-wrap">
+                <strong class="fs-5">{{ post.attributes.title }}</strong>
+            </div>
+            <div class="flex-shrink-1 ms-2">
+                <div class="dropdown">
+                    <a href="#" data-bs-toggle="dropdown" aria-expanded="false" title="more">
+                        <span class="fs-5"><i class="fa fa-ellipsis-v"></i></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-lg-end">
+                        <li><button class="dropdown-item" type="button" data-bs-toggle="modal"
+                                data-bs-target="#sharePostModal"><i class="fa fa-share me-2"
+                                    aria-hidden="true"></i>Share</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <div class="d-flex flex-row flex-wrap">
+                <div class="p-2">
+                    <i class="fa fa-calendar-o" aria-hidden="true" title="date"></i>
+                    <span style="margin-left: 0.5em;">{{ post.attributes.timestamp }}</span>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            {{ post.body | safe }}
+        </li>
+    </ul>
+    {% if post.attributes.tags | length > 0 %}
+    <div class="card-footer">
+        {% for tag in post.attributes.tags %}
+        <span class="badge text-bg-primary">{{ tag }}</span>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+<!-- share post link modal -->
+<div class="modal fade" id="sharePostModal" tabindex="-1" aria-labelledby="sharePostModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="sharePostModalLabel">Share post</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <input type="text" class="form-control" value="/post/{{ id[loop.index0] }}.html" aria-label="share"
+                        aria-describedby="shareButton" id="shareLink" readonly>
+                    <button class="btn btn-outline-secondary" type="button" id="shareButton">
+                        <i class="fa fa-files-o" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

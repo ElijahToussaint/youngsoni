@@ -1,0 +1,253 @@
+{% extends "webui/layouts/layout.html" %}
+
+{% block title %}
+<title>Youngsoni | WebUI</title>
+{% endblock %}
+
+{% block content %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a class="text-decoration-none" href="/webui">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Posts</li>
+    </ol>
+</nav>
+
+<button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#newPostModal">Add new
+    post</button>
+
+<!-- error alert -->
+{% if errors | length > 0 %}
+{% for error in errors %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ error.msg }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+<!-- successful alert -->
+{% if success %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ successMsg }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+<!-- new post modal -->
+<div class="modal fade" id="newPostModal" tabindex="-1" aria-labelledby="newPostModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <form method="post" action="/webui/posts/add">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="newPostModalLabel">
+                        New Post
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" name="title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="body" class="form-label">Body</label>
+                        <textarea class="form-control" name="body" rows="8"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tags" class="form-label">Tags</label>
+                        <input type="text" class="form-control" name="tags">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% if posts | length > 0 %}
+<div class="card mb-3">
+    <div class="card-header">
+        <div>
+            Posts
+        </div>
+    </div>
+    <ul class="list-group list-group-flush">
+        {% set start = (currentPage - 1) * pagesPerItem %}
+        {% set end = ((currentPage - 1) + 1) * pagesPerItem %}
+        {% if end > posts | length %}
+        {% set end = posts | length %}
+        {% endif %}
+        {% for i in range(start, end) %}
+        <li class="list-group-item">
+            <div>
+                <a href="#" class="text-decoration-none" data-bs-toggle="modal"
+                    data-bs-target="#editPostModal{{ loop.index0 }}">{{ posts[i].attributes.title }}</a>
+            </div>
+        </li>
+        <!-- edit post modal -->
+        <div class="modal fade" id="editPostModal{{ loop.index0 }}" tabindex="-1"
+            aria-labelledby="editPostModalLabel{{ loop.index0 }}" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <form method="post" action="/webui/posts/edit">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="editPostModalLabel{{ loop.index0 }}">{{
+                                posts[i].attributes.title }}
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="title" name="title"
+                                    value="{{ posts[i].attributes.title }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="body" class="form-label">Body</label>
+                                <textarea class="form-control" id="body" name="body" rows="8">{{ posts[i].body }}</textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="tags" class="form-label">Tags</label>
+                                <input type="text" class="form-control" id="tags" name="tags"
+                                    value="{{ posts[i].attributes.tags }}">
+                            </div>
+                            <input type="hidden" id="timestamp" name="timestamp" value="{{ posts[i].attributes.timestamp }}">
+                            <input type="hidden" id="position" name="position" value="{{ i }}">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#deletePostModal{{ loop.index0 }}">Delete</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- delete posts modal -->
+        <div class="modal fade" id="deletePostModal{{ loop.index0 }}" tabindex="-1"
+            aria-labelledby="deletePostModalLabel{{ loop.index0 }}" aria-hidden="true">
+            <div class="modal-dialog">
+                <form method="post" action="/webui/posts/delete">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="deletePostModalLabel{{ loop.index0 }}">{{ links[i].name }}
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete this post?
+                            <input type="hidden" id="position" name="position" value="{{ i }}">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                data-bs-target="#editPostModal{{ loop.index0 }}">No</button>
+                            <button type="submit" class="btn btn-primary">Yes</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </ul>
+</div>
+{% else %}
+<div class="alert alert-secondary" role="alert">
+    There are no post.
+</div>
+{% endif %}
+
+<!-- pagination variables -->
+{% set current_page = currentPage %}
+{% set records_per_page = 3 %}
+{% set numPages = totalPages %}
+{% set prev = 1 %}
+{% set next = current_page + records_per_page %}
+<!-- sets the prev records per page -->
+{% if records_per_page - current_page > 0 %}
+{% set prev = 1 %}
+{% else %}
+{% set prev = current_page - (records_per_page - 1) %}
+{% endif %}
+<!-- sets the next records per page -->
+{% if current_page + records_per_page > numPages %}
+{% set next = numPages + 1 %}
+{% else %}
+{% set next = current_page + records_per_page %}
+{% endif %}
+<!-- pagination -->
+{% if numPages > 1 %}
+<nav aria-label="pagination" class="d-sm-none d-md-block">
+    <ul class="pagination justify-content-end">
+        <!-- first and previous buttons -->
+        {% if current_page == 1 %}
+        {% if numPages > records_per_page %}
+        <li class="page-item disabled d-none d-sm-block">
+            <a class="page-link">First</a>
+        </li>
+        {% endif %}
+        <li class="page-item disabled">
+            <a class="page-link">Previous</a>
+        </li>
+        {% else %}
+        {% if numPages > records_per_page %}
+        <li class="page-item d-none d-sm-block">
+            <a href="/webui/posts" class="page-link">First</a>
+        </li>
+        {% endif %}
+        {% if current_page - 1 == 1 %}
+        <li class="page-item">
+            <a href="/webui/posts" class="page-link">Previous</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+            <a href="/webui/posts/{{ current_page - 1 }}" class="page-link">Previous</a>
+        </li>
+        {% endif %}
+        {% endif %}
+        <!-- pages -->
+        {% for page in range(prev, next) %}
+        {% if page == current_page %}
+        <li class="page-item active" aria-current="page">
+            <a class="page-link">{{ page }}</a>
+        </li>
+        {% else %}
+        {% if page == 1 %}
+        <li class="page-item d-none d-sm-block" aria-current="page">
+            <a class="page-link" href="/webui/posts">{{ page }}</a>
+        </li>
+        {% else %}
+        <li class="page-item d-none d-sm-block" aria-current="page">
+            <a class="page-link" href="/webui/posts/{{ page }}">{{ page }}</a>
+        </li>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+        <!-- next and last buttons -->
+        {% if current_page == numPages %}
+        <li class="page-item disabled">
+            <a class="page-link">Next</a>
+        </li>
+        {% if numPages > records_per_page %}
+        <li class="page-item disabled d-none d-sm-block">
+            <a class="page-link">Last</a>
+        </li>
+        {% endif %}
+        {% else %}
+        <li class="page-item">
+            <a href="/webui/posts/{{ current_page | int + 1 }}" class="page-link">Next</a>
+        </li>
+        {% if numPages > records_per_page %}
+        <li class="page-item d-none d-sm-block">
+            <a href="/webui/posts/{{ numPages }}" class="page-link">Last</a>
+        </li>
+        {% endif %}
+        {% endif %}
+</nav>
+{% endif %}
+
+{% endblock %}

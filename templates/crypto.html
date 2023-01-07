@@ -1,0 +1,107 @@
+{% extends "layouts/layout.html" %}
+
+{% block title %}
+<title>{{ config.site.title }} | Crypto</title>
+{% endblock %}
+
+{% block description %}
+<meta name="description" content="{{ config.site.description | striptags(true) | truncate(200) }}">
+{% endblock %}
+
+{% block keywords %}
+<meta name="keywords" content="{{ config.site.keywords | string }}">
+{% endblock %}
+
+{% block content %}
+<div class="card mb-3">
+    <div class="card-header">
+        <div class="d-flex">
+            <div class="w-100">
+                <strong class="fs-5">Crypto</strong>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row row-cols-sm-1 row-cols-md-2">
+            {% for currency in crypto %}
+            <div class="d-flex flex-column">
+                <div>
+                    <div class="d-flex">
+                        <div class="p-2 flex-grow-1">
+                            {% if currency.icon != "" %}
+                            <span class="icon icon-{{ currency.icon }}" title="{{ currency.icon | upper }}"></span> 
+                            {% endif %}
+                            {{ currency.name }}
+                        </div>
+                        <div class="p-2">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#qrcodeModal-{{ currency.address }}-2"
+                                title="qrcode"><i class="fa fa-qrcode" aria-hidden="true"></i></a>
+                        </div>
+                        {% if currency.explorer != "" %}
+                        <div class="p-2">
+                            <a href="{{ currency.explorer }}{{ currency.address }}" target="_blank"
+                                title="blockchain explorer"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="{{ currency.address }}"
+                            value="{{ currency.address }}" aria-label="cryptocurrency address"
+                            aria-describedby="copyButton" readonly>
+                        <button class="btn btn-outline-secondary" type="button" id="copyButton"
+                            onclick="copyToClipboard('{{ currency.address }}')" title="copy">
+                            <i class="fa fa-files-o" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- qrcode modal -->
+            <div class="modal fade" id="qrcodeModal-{{ currency.address }}-2" tabindex="-1"
+                aria-labelledby="qrcodeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="qrcodeModalLabel">
+                                <div class="d-flex">
+                                    <div class="pe-2 flex-shrink-1">
+                                        <span class="icon icon-{{ currency.icon }}"
+                                            title="{{ currency.icon | upper }}"></span>
+                                    </div>
+                                    <div class="w-100">
+                                        {{ currency.name }}
+                                        {% if currency.explorer != "" %}
+                                        <a href="{{ currency.explorer }}{{ currency.address }}" target="_blank"
+                                            title="blockchain explorer"><i class="fa fa-external-link ps-2"
+                                                aria-hidden="true"></i></a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img class="mx-auto d-block" src="{{ qrcode[loop.index0] }}" alt="qrcode" title="qrcode">
+                            <div class="input-group mt-3">
+                                <input type="text" class="form-control" id="{{ currency.address }}"
+                                    value="{{ currency.address }}" aria-label="qrcode" aria-describedby="copyButton"
+                                    readonly>
+                                <button class="btn btn-outline-secondary" type="button" id="copyButton"
+                                    onclick="copyToClipboard('{{ currency.address }}')" title="copy">
+                                    <i class="fa fa-files-o" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

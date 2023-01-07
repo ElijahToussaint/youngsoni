@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Standard Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all">
+    <meta name="author" content="John Doe">
+    <!-- Site Properties -->
+    <title>Youngsoni | Error 500</title>
+    <!-- site css -->
+    <link rel="stylesheet" type="text/css" href="../public/css/site.css">
+    <!-- custom css -->
+    <link rel="stylesheet" type="text/css" href="../public/css/custom.css">
+    <!-- compressed css -->
+    <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
+    <!-- fork awesome css -->
+    <link rel="stylesheet" href="../fork-awesome/css/fork-awesome.min.css">
+    <!-- crypto icons css -->
+    <link rel="stylesheet" type="text/css" href="../crypto-icons/font.css">
+    <link rel="stylesheet" type="text/css" href="../crypto-icons/styles.css">
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="../public/assets/favicon.ico">
+  </head>
+  <body>
+    <div class="content">
+    <!-- content -->
+    <nav class="navbar navbar-expand-lg sticky-top bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="../index.html">
+          <img src="../public/assets/logo.svg" alt="logo" width="30" title="Youngsoni">
+          <span class="align-middle">Youngsoni</span>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav d-block d-sm-none">
+          </ul>
+        </div>
+        <div class="ms-auto mb-2 mb-lg-0 d-none d-sm-block">
+        </div>
+      </div>
+    </nav>
+    <!-- search modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Search</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input class="form-control" type="search" placeholder="Search..." aria-label="default input example" id="myInput" onkeyup="searchSite()">
+          <div class="alert alert-secondary mt-3 mb-0" id="messageSearch" role="alert">
+            Enter a keyword above to search this site's pages.</div>
+            <ul class="list-unstyled mb-0 mt-2 d-none" id="myUL">
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-md">
+    <div class="row mt-3">
+    <div class="col-sm-12 col-md-12 col-lg-4">
+      <!-- sidebar -->
+      <div class="accordion mb-3" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="aboutHeading">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#aboutCollapse" aria-expanded="true" aria-controls="aboutCollapse">
+            About</button>
+          </h2>
+          <div id="aboutCollapse" class="accordion-collapse collapse show" aria-labelledby="aboutHeading" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col mb-2 text-truncate">
+                    <div class="d-flex">
+                      <div class="flex-shrink-1 me-3">
+                        <img src="../public/assets/default.jpg" width="60" class="rounded-circle" alt="John Doe" title="John Doe">
+                      </div>
+                      <div class="w-100 align-self-center">
+                        <div class="d-flex flex-column">
+                          <div class="fw-semibold text-wrap">John Doe</div>
+                            <div class="text-muted">
+                              <small>
+                              0 posts</small>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      A statically generated blog.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-8">
+          <!-- body -->
+          <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Error 500</h4>
+            <hr>
+            <h5>Internal Server Error</h5>
+            <p class="mb-0">The server encountered an unexpected condition which prevented it from fulfilling the request.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- toast message -->
+    <div aria-live="polite" aria-atomic="true" class="position-relative">
+      <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toast-container">
+        <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header">
+            <i class="fa fa-bell me-2" aria-hidden="true"></i>
+            <strong class="me-auto" id="toast-heading">Toast</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body" id="toast-body">
+            Hello, world! This is a toast message.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar bg-light">
+      <div class="container-fluid">
+        <span class="navbar-text mx-auto">
+          <small>Powered by <a class="text-decoration-none" href="https://github.com/ElijahToussaint/youngsoni" target="_blank">Youngsoni</a> &copy; <span id="year"></span></small>
+        </span>
+      </div>
+    </nav>
+    <!-- site javascript -->
+    <script src="../public/js/site.js"></script>
+    <!-- compressed javaScript -->
+    <script src="../jquery/dist/jquery.slim.js"></script>
+    <!-- bootstrap javascript -->
+    <script src="../bootstrap/dist/js/bootstrap.bundle.js"></script>
+  </body>
+</html>

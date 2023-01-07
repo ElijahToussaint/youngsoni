@@ -1,0 +1,33 @@
+{% extends "layouts/layout.html" %}
+
+{% block title %}
+<title>{{ config.site.title }} | {{ config.site.author }}</title>
+{% endblock %}
+
+{% block description %}
+<meta name="description" content="{{ config.site.about | striptags(true) | truncate(200) }}">
+{% endblock %}
+
+{% block keywords %}
+<meta name="keywords" content="{{ config.site.keywords | string }}">
+{% endblock %}
+
+{% block content %}
+<!-- main author section -->
+<div class="card mb-3">
+    <div class="card-header">
+        <div class="d-flex">
+            <div class="w-100">
+                <strong class="fs-5">{{ config.site.author }}</strong>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="clearfix">
+            <img src="{{ config.site.avatar }}" width="100%" class="col-md-3 float-md-end mb-3 ms-md-3"
+                alt="{{ config.site.author }}" title="{{ config.site.author }}">
+            {{ config.site.about | safe }}
+        </div>
+    </div>
+</div>
+{% endblock %}
