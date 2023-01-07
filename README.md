@@ -1,5 +1,6 @@
 <div align="center">
 
+![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/ElijahToussaint/youngsoni.svg)
 [![GitHub issues](https://img.shields.io/github/issues-raw/ElijahToussaint/youngsoni.svg)](https://github.com/ElijahToussaint/youngsoni/issues)
 [![License](https://img.shields.io/github/license/ElijahToussaint/youngsoni.svg)](LICENSE)
 ![GitHub stars](https://img.shields.io/github/stars/ElijahToussaint/youngsoni?style=social)
