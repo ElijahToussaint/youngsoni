@@ -65,13 +65,13 @@ Youngsoni is the [lesser hairy-footed dunnart](https://en.wikipedia.org/wiki/Les
 
 ## Installation
 
-install dependencies:
+Install dependencies:
 
 `sudo apt install nodejs git`
 
 `sudo apt install npm`
 
-clone the git repository:
+Clone the git repository:
 
 `git clone https://github.com/ElijahToussaint/youngsoni`
 
