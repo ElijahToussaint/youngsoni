@@ -103,7 +103,7 @@ Post files are stored in the [posts](src/data/posts) directory and saved with th
 
 Refer to the example files in the [config](src/config/examples) and [data](src/data/examples) directories for examples.
 
-All multimedia files referenced in the site should be stored in the public assets directory. When referencing files on the site, format the path like this: `{path}/path/file.extension`. The `{path}` is a Nunjucks variable that references the relative path depth of the files.
+All multimedia files referenced in the site should be stored in the public [assets](public/assets) directory. When referencing files on the site, format the path like this: `{path}/path/file.extension`. The `{path}` is a Nunjucks variable that references the relative path depth of the files.
 
 All configuration files should be in [hjson](https://hjson.github.io/) format and saved with the `.hjson` extension.
 
