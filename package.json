@@ -35,7 +35,6 @@
   "directories": {
     "doc": "docs"
   },
-  "devDependencies": {},
   "repository": "git+https://github.com/ElijahToussaint/youngsoni.git",
   "bugs": {
     "url": "https://github.com/ElijahToussaint/youngsoni/issues"

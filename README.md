@@ -71,10 +71,6 @@ install dependencies:
 
 `sudo apt install npm`
 
-or
-
-`sudo apt install yarn`
-
 clone the git repository:
 
 `git clone https://github.com/ElijahToussaint/youngsoni`
@@ -86,10 +82,6 @@ Go into the directory:
 Install node packages:
 
 `npm install`
-
-or
-
-`yarn install`
 
 Generate site:
 
