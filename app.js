@@ -77,7 +77,9 @@ nunjucks.configure('views', {
 // sets and sorts posts
 var postPath = []
 readPosts.forEach(function (file) {
-    postPath.push(path.join(postsPath, file))
+    if (path.extname(file) == '.md') {
+        postPath.push(path.join(postsPath, file))
+    }
 })
 var unsortedPosts = []
 postPath.forEach(function (post) {
