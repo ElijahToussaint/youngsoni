@@ -1,2 +1,3 @@
 node_modules
 views/_site
+src/data/posts/.gitignore
