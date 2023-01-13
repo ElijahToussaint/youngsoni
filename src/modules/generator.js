@@ -179,12 +179,12 @@ class generate {
                     if (!fs.existsSync(errorPath)) {
                         fs.mkdirSync(errorPath)
                     }
-                    for (var i = 0; i < errors.length; i++) {
-                        if (sortedPosts.length > 0) {
-                            id[i] = hashids.encode(sortedPosts[i].attributes.timestamp)
-                        }
-                        var render = nunjucks.render('error.html', { config: config, posts: sortedPosts, links: links, crypto: crypto, error: errors[i], id: id, qrcode: qrcode, path: '../' })
-                        fs.writeFileSync(path.join(errorPath, errors[i].status + '.html'), prettify(render))
+                    for (var i = 0; i < sortedPosts.length; i++) {
+                        id[i] = hashids.encode(sortedPosts[i].attributes.timestamp)
+                    }
+                    for (var j = 0; j < errors.length; j++) {
+                        var render = nunjucks.render('error.html', { config: config, posts: sortedPosts, links: links, crypto: crypto, error: errors[j], id: id, qrcode: qrcode, path: '../' })
+                        fs.writeFileSync(path.join(errorPath, errors[j].status + '.html'), prettify(render))
                     }
                 } else {
                     console.log('The error template doesn\'t exists.')

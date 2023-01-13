@@ -1,2 +1,8 @@
 node_modules
 views/_site
+src/data/posts
+src/data/crypto.hjson
+src/data/errors.hjson
+src/data/links.hjson
+src/config/config.hjson
+public
