@@ -135,3 +135,4 @@ Youngsoni is free, open-source software. Donations directly support development 
 ## Code Mirrors
 
 - [GitHub](https://github.com/ElijahToussaint/youngsoni)
+- [Codeberg](https://codeberg.org/ElijahToussaint/youngsoni)
