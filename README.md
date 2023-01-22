@@ -48,6 +48,7 @@ Youngsoni is the [lesser hairy-footed dunnart](https://en.wikipedia.org/wiki/Les
 - [Javascript](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/)
 - [Hjson](https://hjson.github.io/)
 - [Nunjucks](https://mozilla.github.io/nunjucks/)
+- [Front Matter](https://github.com/jxson/front-matter)
 
 ## Features
 
@@ -100,6 +101,8 @@ To access the webui:
 Configuration files can be found in the [config](src/config) and [data](src/data) directories.
 
 Post files are stored in the [posts](src/data/posts) directory and saved with the `.md` extension.
+
+All `.md` files need to be in [front matter](https://github.com/jxson/front-matter) format to be parsed and displayed correctly.
 
 Refer to the example files in the [config](src/config/examples) and [data](src/data/examples) directories for examples.
 
