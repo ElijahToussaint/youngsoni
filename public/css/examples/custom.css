@@ -1,0 +1,65 @@
+
+body {
+    /* use the css line below to preview the background of the site before generation. */
+    /*background-image: url('public/assets/background.jpg') !important; */
+    /* use the css line below for the generated site. */
+    /*background-image: url('../../public/assets/background.jpg') !important; */
+    --bs-body-color: #212529 !important;
+}
+:root {
+    --bs-light-rgb: 248,249,250 !important;
+}
+.navbar {
+    --bs-navbar-color: rgba(0, 0, 0, 0.55) !important;
+    --bs-navbar-brand-color: rgba(0, 0, 0, 0.9) !important;
+    --bs-navbar-brand-hover-color: rgba(0, 0, 0, 0.9) !important;
+    --bs-navbar-toggler-border-color: rgba(0, 0, 0, 0.1) !important; 
+}
+.card {
+    --bs-card-bg: #fff !important;
+    --bs-card-border-color: rgba(0, 0, 0, 0.175) !important;
+}
+.list-group {
+    --bs-list-group-color: #212529 !important;
+    --bs-list-group-bg: #fff !important;
+    --bs-list-group-border-color: rgba(0, 0, 0, 0.125) !important;
+}
+.accordion {
+    --bs-accordion-color: #212529 !important;
+    --bs-accordion-bg: #fff !important;
+    --bs-accordion-btn-color: #212529 !important;
+    --bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e") !important;
+}
+.modal {
+    --bs-modal-bg: #fff !important;
+}
+.btn-close {
+    background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat !important;
+}
+.navbar-text {
+    --bs-navbar-color: rgba(0, 0, 0, 0.55); /* footer text color */
+}
+.navbar-text a {
+    --bs-navbar-active-color: rgba(0, 0, 0, 0.9);
+}
+.navbar-toggler-icon {
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+.navbar-nav {
+    --bs-nav-link-color: rgba(0, 0, 0, 0.55) !important;
+    --bs-nav-link-hover-color: rgba(0, 0, 0, 0.7) !important;
+}
+.pagination {
+    --bs-pagination-bg: #fff !important;
+    --bs-pagination-disabled-bg: #e9ecef !important;
+    --bs-pagination-hover-border-color: #dee2e6 !important;
+    --bs-pagination-disabled-border-color: #dee2e6 !important;
+    --bs-pagination-active-border-color: #0d6efd !important;
+}
+.toast {
+    --bs-toast-bg: rgba(255,255,255,0.85) !important;
+    --bs-toast-header-bg: rgba(255,255,255,0.85) !important;
+    --bs-toast-header-color: rgba(33, 37, 41, 0.75) !important;
+    --bs-border-color-translucent: rgba(0, 0, 0, 0.175) !important;
+    --bs-toast-header-border-color: rgba(0, 0, 0, 0.175) !important;
+}
