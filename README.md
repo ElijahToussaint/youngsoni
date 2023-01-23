@@ -114,6 +114,8 @@ All configuration files should be in [hjson](https://hjson.github.io/) format an
 
 The appearence of the generated site can be modified by editing the [custom](public/css/custom.css) CSS file in the [public](public) directory.
 
+There is an [example custom css file](public/css/examples/custom.css) that can be used as a reference for what variables to modify. Copy and paste the contents of the [example custom css file](public/css/examples/custom.css) into the [custom css file](public/css/custom.css) and experiment with the design.
+
 Youngsoni uses [Bootstrap](https://github.com/twbs/bootstrap) for its frontend design. Learn to modify the CSS variables [here](https://getbootstrap.com/docs/5.0/customize/overview/). 
 
 ## Support / Donate
