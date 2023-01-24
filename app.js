@@ -152,8 +152,8 @@ for (let i = 0; i < sortedPosts.length; i++) {
 }
 // rss file
 if (config.rss.enabled) {
-    app.get('/feed.rss', function (req, res) {
-        res.render('_site/feed.rss')
+    app.get('/rss.xml', function (req, res) {
+        res.render('_site/rss.xml')
     })
 }
 // webui index page
