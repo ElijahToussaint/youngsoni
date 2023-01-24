@@ -56,7 +56,7 @@ exports.get = function (crypto) {
         case "BitBay":
             return "https://chainz.cryptoid.info/bay/address.dws?"
         case "Bitcoin Cash":
-            return "https://blockchair.com/bitcoin-cash/address/bitcoincash:"
+            return "https://blockchair.com/bitcoin-cash/address/"
         case "BNB":
             return "https://explorer.bnbchain.org/address/"
         case "Bancor Network":
