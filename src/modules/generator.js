@@ -115,12 +115,14 @@ class generate {
                         }
                     }
                     for (var i = 0; i < sortedPosts.length; i++) {
-                        posts[i] = sortedPosts[i]
                         id[i] = hashids.encode(sortedPosts[i].attributes.timestamp)
+                        posts[i] = sortedPosts[i]
                         posts[i].body = md.render(sortedPosts[i].body)
                         posts[i].attributes.timestamp = moment.unix(sortedPosts[i].attributes.timestamp).format('LLLL')
-                        var render = nunjucks.render('post.html', { post: posts[i], posts: sortedPosts, config: config, links: links, crypto: crypto, qrcode: qrcode, id: id[i], path: '../' })
-                        fs.writeFileSync(path.join(postPath, id[i] + '.html'), prettify(render))
+                    }
+                    for (var j = 0; j < sortedPosts.length; j++) {
+                        var render = nunjucks.render('post.html', { post: posts[j], posts: posts, config: config, links: links, crypto: crypto, qrcode: qrcode, id: id, path: '../' })
+                        fs.writeFileSync(path.join(postPath, id[j] + '.html'), prettify(render))
                     }
                 } else {
                     console.log('The post template doesn\'t exists.')
@@ -133,8 +135,11 @@ class generate {
                     if (fs.existsSync(authorTemplate)) {
                         for (var i = 0; i < sortedPosts.length; i++) {
                             id[i] = hashids.encode(sortedPosts[i].attributes.timestamp)
+                            posts[i] = sortedPosts[i]
+                            posts[i].body = md.render(sortedPosts[i].body)
+                            posts[i].attributes.timestamp = moment.unix(sortedPosts[i].attributes.timestamp).format('LLLL')
                         }
-                        var render = nunjucks.render('author.html', { config: config, posts: sortedPosts, links: links, crypto: crypto, id: id, qrcode: qrcode, path: './' })
+                        var render = nunjucks.render('author.html', { config: config, posts: posts, links: links, crypto: crypto, id: id, qrcode: qrcode, path: './' })
                         fs.writeFileSync(path.join(sitePath, 'author.html'), prettify(render))
                     } else {
                         console.log('The author template doesn\'t exists.')
@@ -148,8 +153,11 @@ class generate {
                     if (fs.existsSync(linksTemplate)) {
                         for (var i = 0; i < sortedPosts.length; i++) {
                             id[i] = hashids.encode(sortedPosts[i].attributes.timestamp)
+                            posts[i] = sortedPosts[i]
+                            posts[i].body = md.render(sortedPosts[i].body)
+                            posts[i].attributes.timestamp = moment.unix(sortedPosts[i].attributes.timestamp).format('LLLL')
                         }
-                        var render = nunjucks.render('links.html', { config: config, posts: sortedPosts, links: links, crypto: crypto, id: id, qrcode: qrcode, path: './' })
+                        var render = nunjucks.render('links.html', { config: config, posts: posts, links: links, crypto: crypto, id: id, qrcode: qrcode, path: './' })
                         fs.writeFileSync(path.join(sitePath, 'links.html'), prettify(render))
                     } else {
                         console.log('The links template doesn\'t exist.')
@@ -163,8 +171,11 @@ class generate {
                     if (fs.existsSync(cryptoTemplate)) {
                         for (var i = 0; i < sortedPosts.length; i++) {
                             id[i] = hashids.encode(sortedPosts[i].attributes.timestamp)
+                            posts[i] = sortedPosts[i]
+                            posts[i].body = md.render(sortedPosts[i].body)
+                            posts[i].attributes.timestamp = moment.unix(sortedPosts[i].attributes.timestamp).format('LLLL')
                         }
-                        var render = nunjucks.render('crypto.html', { config: config, posts: sortedPosts, links: links, crypto: crypto, id: id, qrcode: qrcode, path: './' })
+                        var render = nunjucks.render('crypto.html', { config: config, posts: posts, links: links, crypto: crypto, id: id, qrcode: qrcode, path: './' })
                         fs.writeFileSync(path.join(sitePath, 'crypto.html'), prettify(render))
                     } else {
                         console.log('The crypto template doesn\'t exist.')
@@ -181,9 +192,12 @@ class generate {
                     }
                     for (var i = 0; i < sortedPosts.length; i++) {
                         id[i] = hashids.encode(sortedPosts[i].attributes.timestamp)
+                        posts[i] = sortedPosts[i]
+                        posts[i].body = md.render(sortedPosts[i].body)
+                        posts[i].attributes.timestamp = moment.unix(sortedPosts[i].attributes.timestamp).format('LLLL')
                     }
                     for (var j = 0; j < errors.length; j++) {
-                        var render = nunjucks.render('error.html', { config: config, posts: sortedPosts, links: links, crypto: crypto, error: errors[j], id: id, qrcode: qrcode, path: '../' })
+                        var render = nunjucks.render('error.html', { config: config, posts: posts, links: links, crypto: crypto, error: errors[j], id: id, qrcode: qrcode, path: '../' })
                         fs.writeFileSync(path.join(errorPath, errors[j].status + '.html'), prettify(render))
                     }
                 } else {
@@ -193,7 +207,7 @@ class generate {
             // rss file generation
             this.rss = function () {
                 if (config.rss.enabled) {
-                    const rssTemplate = path.join(templatesPath, 'feed.rss');
+                    const rssTemplate = path.join(templatesPath, 'rss.xml');
                     if (fs.existsSync(rssTemplate)) {
                         for (var i = 0; i < sortedPosts.length; i++) {
                             posts[i] = sortedPosts[i]
@@ -201,8 +215,8 @@ class generate {
                             posts[i].body = md.render(sortedPosts[i].body)
                             posts[i].attributes.timestamp = moment.unix(sortedPosts[i].attributes.timestamp).format('LLLL')
                         }
-                        var render = nunjucks.render('feed.rss', { config: config, posts: sortedPosts, id: id })
-                        fs.writeFileSync(path.join(sitePath, 'feed.rss'), render)
+                        var render = nunjucks.render('rss.xml', { config: config, posts: posts, id: id })
+                        fs.writeFileSync(path.join(sitePath, 'rss.xml'), render)
                     } else {
                         console.log('The RSS template doesn\'t exists.')
                     }
