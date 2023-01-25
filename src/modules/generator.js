@@ -215,7 +215,7 @@ class generate {
                             posts[i].body = md.render(sortedPosts[i].body)
                             posts[i].attributes.timestamp = moment.unix(sortedPosts[i].attributes.timestamp).format('LLLL')
                         }
-                        var render = nunjucks.render('rss.xml', { config: config, posts: sortedPosts, id: id })
+                        var render = nunjucks.render('rss.xml', { config: config, posts: posts, id: id })
                         fs.writeFileSync(path.join(sitePath, 'rss.xml'), render)
                     } else {
                         console.log('The RSS template doesn\'t exists.')
