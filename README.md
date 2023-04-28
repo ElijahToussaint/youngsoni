@@ -135,7 +135,7 @@ Youngsoni is free, open-source software. Donations directly support development 
 
 ## Contact
 
-- [Email](mailto:elijahtoussaint@protonmail.com)
+- [Email](mailto:elijah2toussaint@protonmail.com)
 
 ## Code Mirrors
 
